@@ -1,0 +1,56 @@
+<ng-template #emptyDepot>
+    <div class="text-danger">there is no depot</div>
+  </ng-template>
+  
+  <div class="card p-2" *ngIf="depots;else emptyDepot">
+      <div class="card-body">
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let depot of depots">
+              <td>{{ depot.id }}</td>
+              <td>{{ depot.name }}</td>
+              <td>
+                <!-- Button trigger modal -->
+                <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#depotModal" (click)="getDepot(depot)">
+                  <i class="bi bi-pencil-fill"></i>
+                </button>
+                <span> &nbsp; </span>
+                <button class="btn btn-danger">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    
+    </div>
+    
+    
+    <!-- Modal -->
+    <div class="modal fade" id="depotModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="productModalLabel">Update depot</h1>
+            <button type="button" #myModalClose class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="depotFormGroup" (ngSubmit)="handleUpdate()">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" placeholder="depot name" formControlName="name">
+              <div class="modal-footer">
+                <button type="submit" [disabled]="depotFormGroup.invalid"  class="btn btn-primary">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>

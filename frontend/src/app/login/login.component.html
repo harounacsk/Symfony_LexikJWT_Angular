@@ -1,0 +1,12 @@
+<div *ngIf="errorMessage">
+   <h4>{{errorMessage}}</h4> 
+</div>
+<form [formGroup]="loginFormGroup" (ngSubmit)="handleSignIn()">
+   <label for="email">Email: </label>  
+   <input type="email" formControlName="email" id="email"><br><br>
+    <label for="password">Password: </label> 
+    <input type="password" formControlName="password" id="password"><br><br>
+    <button type="submit" [disabled]="loginFormGroup.invalid">Login</button>
+</form>
+
+<a routerLink="/register">Sign up</a>
