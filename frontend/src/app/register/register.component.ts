@@ -30,8 +30,8 @@ export class RegisterComponent implements OnInit{
       password:this.registerFormGroup.value.password
     };
     this.authService.signUp(user).subscribe({
-      next:()=>{
-        alert("Success");
+      next:(data)=>{
+        alert(data.message);
       },
       error:()=>{
         alert("Error");

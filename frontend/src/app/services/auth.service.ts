@@ -13,10 +13,11 @@ export class AuthService {
   constructor(private httpClient:HttpClient) { }
 
   public signIn(user: User): Observable<JwToken> {
-    return this.httpClient.post<JwToken>(`${this.url}authentication_token`, user);
+   // return this.httpClient.post<JwToken>(`${this.url}authentication_token`, user);
+   return this.httpClient.post<JwToken>(`${this.url}user/auth`, user);
   }
 
-  public signUp(user: User): Observable<string> {
-    return this.httpClient.post<string>(`${this.url}registration/user`, user);
+  public signUp(user: User): Observable<any> {
+    return this.httpClient.post<string>(`${this.url}user/register`, user);
   }
 }
